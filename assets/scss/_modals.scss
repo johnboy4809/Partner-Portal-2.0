@@ -1,0 +1,50 @@
+.modal-overlay, .modal {
+	background-color: rgba($sidebar, 0.5);
+}
+
+.logout-modal {
+    width:90%;
+    max-width: 500px;
+    border: 9px solid $mc-blue; 
+}
+
+.serial-check-modal {
+    @include grid(1fr, 0);
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+    grid-template-areas: 
+        "message"
+        "content";
+    .message {
+        grid-area: message;
+    }
+    .modal-content {
+        grid-area: content;
+        padding: 0;
+        @include grid(55% 45%, 0);
+        overflow: hidden;
+        form {
+            padding: 1.5rem;
+        }
+        .found {
+            border: 1px solid $dash-line;
+            position: relative;
+            background-color: $dash;
+            overflow-y: auto;
+        }
+    }
+    // @include for-tablet-portrait-up {
+    //     @include grid(1fr 300px, get($grid, 'gutter')*4);
+    //     grid-template-areas: 
+    //         "message message"
+    //         "form info";
+    //     .found-printer-info {
+    //         border-left:1px solid $mc-lgrey;
+    //         padding-left: get($grid, 'gutter')*4;
+    //         .class-image {
+    //             padding:0 4em;
+    //         }
+    //     }    
+    // }
+}

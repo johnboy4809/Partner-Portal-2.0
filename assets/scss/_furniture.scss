@@ -1,0 +1,538 @@
+.card, .window {
+    border: 1px solid $dash-line;
+    background-color: $white;
+    padding: 1.5rem;
+    border-radius: $dash-radius;
+    @include material_box_shadow(1, darken($dash-line, 5%));
+    header {
+        color: $mc-blue;
+    }
+    &.table, &.contents {
+        padding: 0;
+        padding-top: 1.5rem;
+        header {
+            padding: 0 1.5rem;
+            padding-bottom: 0;
+            border-bottom: 1px solid $dash-line;
+        }
+    }
+    &:hover, &:focus {
+        @include material_box_shadow(3, darken($dash-line, 5%));
+    }
+}
+
+.contents {
+    @include grid(1fr, 0);
+    @include vertical-grid(35px 1fr, 0);
+    grid-template-areas:
+        "header"
+        "content";
+    .header {
+        grid-area: header;
+    }
+    .card-content {
+        grid-area: content;
+        padding: 1.5rem;
+    }
+}
+
+.cases-overview {
+    @include grid(1fr 1fr 1fr 150px, 0);
+    @include vertical-grid(35px 1fr, 0);
+    grid-template-areas:
+        "header header header chart"
+        "total open closed chart";
+    .card-header {
+        grid-area: header;
+    }
+    .case-total {
+        grid-area: total;
+    }   
+    .case-open {
+        grid-area: open;
+    } 
+    .case-closed {
+        grid-area: closed;
+    }
+    .chartjs {
+        grid-area: chart;
+        place-self: center;
+    }
+}
+
+.printers-overview {
+    @include grid(1fr 3fr 150px, 0);
+    @include vertical-grid(35px 1fr, 0);
+    grid-template-areas:
+        "header header chart"
+        "total classes chart";
+    .card-header {
+        grid-area: header;
+    }
+    .printer-total {
+        grid-area: total;
+    }
+    .classes {
+        grid-area: classes;
+        margin: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+        grid-gap: get($grid, 'gutter');
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(100px,1fr);
+        overflow-x: auto;
+        .class {
+            @include grid(36px 1fr, get($grid, 'gutter'));
+            @include vertical-grid(36px 1fr, 0);
+            grid-template-areas:
+                "img total"
+                "name name";
+            .image {
+                grid-area: img;
+                place-self: center;
+            }    
+            .amount {
+                grid-area: total;
+                place-self: center start;
+            }
+            .amount-title {
+                margin-top:0.1rem;
+                grid-area: name;
+            }    
+        }
+    }
+    .chartjs {
+        grid-area: chart;
+        place-self: center;
+    }
+}
+
+.stat {
+    place-self: center start;
+    .amount {
+        font-size: 2rem;
+        color: $mc-blue;
+        display: block;
+        margin-bottom: 0.15rem;
+        letter-spacing: 0;
+        small {
+            font-size: 0.875rem;
+            color: $mc-lblue;
+            letter-spacing: 0;
+            font-weight: 600;
+        }
+    }
+    .amount-title {
+        font-size: 0.875rem;
+        color: $mc-lblue;
+        display: block;
+    }
+}
+
+.serial-check {
+    @include grid(1fr, 0);
+    @include vertical-grid(35px 1fr, 0);
+    grid-template-areas:
+        "header"
+        "content";
+    .card-header {
+        grid-area: header;
+    }
+    .card-content {
+        grid-area: content;
+        padding: 0;
+        @include grid(55% 45%, 0);
+        overflow: hidden;
+        form {
+            padding: 1.5rem;
+        }
+        .found-printer {
+
+        }
+    }
+}
+
+.document-library {
+    overflow: hidden;
+    .card-content {
+        padding: 0;
+        overflow-y: auto;
+    }
+}
+
+.found-printer { 
+    border-left: 1px solid $dash-line;
+    position: relative;
+    background-color: lighten($dash, 1%);
+    background-image: url('../graphics/family.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+    @include vertical-grid(150px 1fr, 0);
+    .class-image {
+        background-color: $dash;
+        place-self: center;
+        img {
+            width: 100px;
+            margin: 0;
+        }
+    }
+    .class-info {
+        padding: 1.5rem 0;
+        background-color: $white;
+        border-top: 1px solid $dash-line;
+        .title, .sub-title {
+            margin: 0;
+            text-align: center;
+            color: $mc-blue;
+            margin-bottom: 0.25rem;
+        }
+        .sub-title {
+            color: $mc-lblue;
+            margin-bottom: 1rem;
+        }
+        h6 {
+            margin: 0;
+            border-bottom: 1px solid $dash-line;
+            padding: 0.25rem;
+            color: $mc-lblue;;
+        }
+        .row {
+            font-size: 0.875rem;
+            border-bottom: 1px solid $dash-line;
+            @include grid(1fr 1fr, get($grid, 'gutter'));
+            padding: 0.25rem;
+            .key {
+                color: $mc-blue;
+            }
+            .val {
+                color: $mc-lblue;
+            }
+        }
+        form {
+            padding: 0 2.5rem;
+        }
+    }
+}
+
+.cases-grid { 
+    .case-filter {
+        border-bottom: 1px solid $dash-line;
+    }
+    .table-rows {}
+    .pagination {
+        border-top: 1px solid $dash-line;
+    }
+    .the-case {
+        border-left: 1px solid $dash-line;
+        background-color: $dash;
+    }
+}
+
+.the-case {
+    position: relative;
+    .caseWrapper {
+        .case-post {
+            background-color: $white;
+            border-bottom: 1px solid $dash-line;
+            padding: 2.5rem;
+            .case-header {
+                text-align: center;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+                .title {
+                    margin-bottom: 1.25rem;;
+                }
+                .date {
+                    font-size: 0.875rem;
+                    margin-bottom: 0.15rem;
+                    time {
+                        color: $mc-lblue;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+        .reply-count {
+            text-align: center;
+            padding: 2.5rem;
+            span {
+                display: block;
+            }
+            .title {
+                font-size: 1.25rem;
+                color: darken($dash, 25%);
+                margin-bottom: 1rem;
+            }
+        }
+        .case-replies {
+            @include vertical-grid(1fr, get($grid, 'gutter')*2);
+            .case-reply {
+                width: 90%;
+                max-width: 600px;
+                margin: 0 auto;
+                header {
+                    padding: 0;
+                    padding-bottom: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}
+
+.download-attachment {
+    @include grid(50px 1fr 100px, get($grid, 'gutter'));
+    @include vertical-grid(1fr, 0);
+    grid-template-areas:
+        "icon file download";
+    border: 1px solid $dash-line;
+    background-color: $dash;
+    padding: 1rem;    
+    .icon {
+        grid-area: icon;
+        place-self: center;
+        color: $mc-lblue;
+        font-size: 2rem;;
+    }
+    .file-info {
+        grid-area: file;
+        place-self: center start;
+        .filename {
+            display: block;
+            color: $mc-blue;
+            margin-bottom: 0.15rem;;
+        }
+        .fileinfo {
+            font-size: 0.875rem;
+            color: $mc-lblue;
+        }
+    }
+    .link {
+        grid-area: download;
+        place-self: center;
+    }
+}
+
+.clix {
+    padding: 0;
+    background-image: url('../graphics/clix.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .preview {
+        background-color: $mc-lblue;
+        padding: 0.5rem;
+        color: $white;
+        font-size: 0.5rem;
+    }
+}
+
+.window {
+    position: relative;
+    &.login {
+        @include grid(1fr, 0);
+        grid-template-areas:
+            "message"
+            "brand"
+            "form";
+        padding: get($grid, 'gutter');
+        width: 90%;
+        .message {
+            grid-area: message;
+            margin-bottom: 1.5em;
+        }
+        .brand {
+            grid-area: brand;
+            place-self: center;
+            margin-bottom:1em;
+            h3 {
+                color: lighten($sidebar, 25%);
+                text-transform: uppercase;
+                font-size: 1.25em;
+                letter-spacing: 0.15em;
+                margin: 0;
+            }
+            .logo {
+                margin-bottom: 0.75em;
+            }
+        }
+        .formWrapper {
+            grid-area: form;
+        }
+        @include for-tablet-landscape-up {
+            @include grid($menuWidth 1fr, 0);
+            grid-auto-rows: minmax(min-content, max-content);
+            max-width: 750px;
+            grid-template-areas:
+                "message message"
+                "brand form";
+            .message {
+                margin-bottom: 0;
+            }    
+            .formWrapper {
+                border-left: 1px solid $dash-line;
+                padding: get($grid, 'gutter')*4 0 get($grid, 'gutter')*4 get($grid, 'gutter')*4;
+            }    
+        }
+    }
+}
+
+.company-profile {
+    .card-content {
+        padding: 0;
+        overflow: hidden;
+        @include grid(1fr 150px, 0);
+        @include vertical-grid(150px 1fr, 0);
+        background-color: lighten($dash, 1%);
+        grid-template-areas:
+            "logo momentum"
+            "info info";
+        .account-logo {
+            grid-area: logo;
+            place-self: center;
+        }
+        .momentum {
+            grid-area: momentum;
+            border-left: 1px solid $dash-line;
+        }
+        .account-info {
+            grid-area: info;
+            overflow-y: auto;
+            border-top: 1px solid $dash-line;
+            background-color: $white;
+            padding: 1.5rem 0;
+            .data-col {
+                border-bottom: 1px solid $dash-line;
+                @include grid(1fr 1fr, 0);
+                padding: 1rem 1.5rem;
+                .data-label {
+                    color: $mc-blue;
+                    place-self: center start;
+                }
+                .data-value {
+                    color: $mc-lblue;
+                    font-weight: 500;
+                    place-self: center start;
+                }
+            }
+        }
+    }
+}
+
+// .printers-card {
+//     > .card-content {
+//         @include grid(1fr, 0);
+//         grid-template-areas:
+//             "bar"
+//             "list"
+//             "info";
+//         .printer-bar {
+//             grid-area: bar;
+//         }
+//         .printer-list {
+//             grid-area: list;
+//         }
+//         .printer-info {
+//             grid-area: info;
+//         }
+//         @include for-tablet-landscape-up {
+//             @include grid(1fr $menuWidth, 0);
+//             grid-auto-rows: minmax(min-content, max-content);
+//             grid-template-areas:
+//                 "bar bar"
+//                 "list info";
+//             .printer-bar {
+//                 border-bottom: 1px solid $mc-lgrey;
+//                 padding: get($grid, 'gutter')*2 0;
+//             }
+//             .printer-list {
+//                 padding: get($grid, 'gutter')*2 0;
+//             }
+//             .printer-info {
+//                 border-left: 1px solid $mc-lgrey;
+//                 padding: get($grid, 'gutter')*2 0;
+//                 padding-left: get($grid, 'gutter')*2;
+                
+//             }   
+//         }
+//         @include for-desktop-up {
+//             @include grid(70% 30%, 0);
+//         }
+//     }
+// }
+
+// .dealer-advert {
+//     background-image: url('../advert/mc_family.png');
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     background-size: auto 100%;
+//     padding: 0;
+//     @include grid(30% 70%, 0);
+//     .offer {
+//         place-self: center;
+//         background-color: rgba($mc-blue, 0.9);
+//         padding: get($grid, 'gutter')*8;
+//         text-align: center;
+//         span {
+//             display: block;
+//             color: $white;
+//             font-weight: 400;
+//             @include text-shadow();
+//             margin: 0;
+//             &.h1 {
+//                 font-size: 4em;
+//                 letter-spacing: 0.05em;
+//             }
+//         }
+//     }
+// }
+
+// .summary {
+//     border-radius: 5px;
+//     .summary-main {
+//         padding: get($grid, 'gutter')*2;
+//         .summary-value, .summary-desc {
+//             span {
+//                 color: $white;
+//                 @include text-shadow();
+//                 font-weight: 300;
+//                 font-size: 1.5em;
+//             }
+//         } 
+//         .summary-value {
+//             span {
+//                 font-weight: 400;
+//                 font-size: 2em;
+//             }
+//         }
+//         .summary-desc {}
+//     }
+//     .summary-footer {}
+//     &.blue1 {
+//         background-color: $blue1;
+//     }    
+//     &.blue2 {
+//         background-color: $blue2;
+//     }    
+//     &.blue3 {
+//         background-color: $blue3;
+//     }    
+//     &.blue4 {
+//         background-color: $blue4;
+//     }
+//     &.blue5 {
+//         background-color: $blue5;
+//     }
+// }
+
+// .printer-info {
+//     .class-image {
+
+//     }
+//     .class-info {
+
+//     }
+// }
+

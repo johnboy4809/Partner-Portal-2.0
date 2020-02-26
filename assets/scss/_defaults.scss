@@ -1,0 +1,39 @@
+// Re(sets)
+p, form, fieldset, img {
+	border:none;
+	margin:0;
+	padding:0;
+}
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section, main { display:block; }
+
+// Site BG Colour
+$site-bg-colour							: #FFFFFF !default;
+$white 									: #FFFFFF !default;
+$black 									: #000000 !default;
+
+// Base Font Sizes
+$base-font-size							: 16px !default;
+$base-line-height						: 1.15 !default;
+$heading-scale							: 7	 !default;
+
+
+// Default Font Stacks
+$sans-serif-stack						: "ProximaNova", sans-serif !default;
+$sans-serif-bold-stack					: "ProximaNovaBold", sans-serif !default;
+
+// Baseline
+$baseline-x								: 6px !default;
+
+// Text colours
+$colour-text							: #555555 !default;
+
+// Link colours
+$colour-anchor							: #666666 !default;
+$colour-anchor-hover					: #000000 !default;

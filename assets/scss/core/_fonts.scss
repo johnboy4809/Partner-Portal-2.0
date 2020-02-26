@@ -1,0 +1,29 @@
+@mixin font-stack($family:sans-serif-stack, $weight:400) {
+	@if $family == "sans-serif-stack" {
+		@if $weight == 400 {
+			font-family: $sans-serif-stack;
+		} @else if $weight == 700 {
+			font-family: $sans-serif-bold-stack;
+		}
+	}
+}
+
+@mixin rem($property, $value) {
+	#{$property}: ($value / $base-font-size) * 1rem;
+}
+
+@mixin smoothing() {
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	direction: ltr;
+}
+
+//iconmoon
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}

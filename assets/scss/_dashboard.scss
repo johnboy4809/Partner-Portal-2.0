@@ -1,0 +1,271 @@
+
+.full {
+    background-color: $dash;
+    @include grid(1fr, 0px);
+    @include vertical-grid(1fr, 0px);
+    height: 100vh;
+    .window {
+        place-self: center;
+    }
+}
+
+.grid-container {
+    background-color: $dash;
+    @include grid(1fr, 0px);
+    @include vertical-grid($site-header-height 1fr $site-header-height, 0px);
+    grid-template-areas:
+        "dashboard-header"
+        "dashboard-content"
+        "dashboard-footer";
+    height: 100vh;
+    .dashboard-header {
+        grid-area: dashboard-header;
+        background-color: $white;
+        border-bottom: 1px solid lighten($dash-line, 5%);
+    }
+    .dashboard-menu {
+        grid-area: dashboard-menu;
+        background-color: $sidebar;
+        border-right: 1px solid lighten($sidebar, 15%);
+        height: 100%;
+        width: $menuWidth;
+        position: fixed;
+        overflow-y: auto;
+        @include translate(-($menuWidth+5), 0);
+        @include transition(all .5s ease-in-out);
+        z-index: 2;
+        &.active {
+            @include translate(0, 0);
+        }
+    }
+    .dashboard-content {
+        grid-area: dashboard-content;
+        background-color: $dash;
+    }
+    .dashboard-footer {
+        grid-area: dashboard-footer;
+        background-color: $white;
+        border-top: 1px solid lighten($dash-line, 5%);
+    }
+    .menu-icon, .close-icon {
+        position: fixed;
+        @include grid($site-header-height, 0px);
+        height: $site-header-height;
+        cursor: pointer;
+        .fa-bars, .fa-arrow-left {
+            color: $sidebar;
+            place-self: center;
+            font-size: 2em;
+        }
+    }
+    .close-icon {
+        position: absolute;
+        left: auto;
+        right: 0;
+        .fa-arrow-left {
+            color: $white;
+        }
+    }
+    @include for-tablet-portrait-up {
+        @include grid($menuWidth 1fr, 0px);
+        @include transition(all .5s ease-in-out);
+        grid-template-areas:
+            "dashboard-menu dashboard-header"
+            "dashboard-menu dashboard-content"
+            "dashboard-menu dashboard-footer";
+        .dashboard-menu {
+            position: relative;
+            @include translate(0, 0);
+        }    
+        .menu-icon, .close-icon {
+            display: none;
+        }
+        &.collapse {
+            @include grid($collapse 1fr, 0px);
+            .dashboard-menu {
+                width: $collapse;
+            }
+        }
+    }
+    @include for-tablet-landscape-up {}
+    @include for-desktop-up {}
+}
+
+// Home
+.dashboard-content {
+    .main-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr,));
+        grid-auto-rows: 170px;
+        grid-gap: get($grid, 'gutter')*2;
+        margin: get($grid, 'gutter')*2;
+    }
+    .main-grid {
+        @include grid(1fr 1fr 1fr, get($grid, 'gutter')*2);
+        @include vertical-grid(400px 400px, get($grid, 'gutter')*2);
+        margin: get($grid, 'gutter')*2;
+        // grid-auto-rows: 250px;
+        grid-template-areas:
+            "printers printers serial"
+            "cases library company";
+        .printers-table {
+            grid-area: printers;
+            overflow: hidden;
+        }
+        .serial-check {
+            grid-area: serial;
+        }
+        .cases-table {
+            grid-area: cases;
+            overflow: hidden;
+        }
+        .document-library {
+            grid-area: library;
+        }
+        .company-profile {
+            grid-area: company;
+        }
+    }
+//     .dealer-advert {
+//         grid-area: advert;
+//         margin: get($grid, 'gutter')*2;
+//         padding: get($grid, 'gutter')*2;
+//         background-color: $white;
+//     }
+//     .main-overview {
+//         grid-area: overview;
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+//         grid-auto-rows: 100px;
+//         grid-gap: get($grid, 'gutter')*2;
+//         margin: get($grid, 'gutter')*2;
+//     }
+//     .printers-card {
+//         grid-area: printers;
+//         margin: get($grid, 'gutter')*2;
+//         padding: get($grid, 'gutter')*2;
+//         background-color: $white;
+//     }
+//     .col2 {
+//         grid-area: account;
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+//         grid-auto-rows: 100px;
+//         grid-gap: get($grid, 'gutter')*2;
+//         margin: get($grid, 'gutter')*2;
+//     }
+//     @include for-tablet-portrait-up {}
+//     @include for-tablet-landscape-up {
+//         .main-overview {
+//             grid-auto-rows: 125px;
+//         }
+//     }
+//     @include for-desktop-up {
+//         .dealer-advert, .main-overview, .printers-card, .col2 {
+//             margin: get($grid, 'gutter')*4;
+//         }
+//         .main-overview, .col2 {
+//             grid-gap: get($grid, 'gutter')*4;
+//         }
+//     }
+}
+
+// Page Dashboards
+.dashboard-content {
+    &.page {
+        .page-header {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr,));
+            grid-auto-rows: 70px;
+            grid-gap: get($grid, 'gutter')*2;
+            margin: get($grid, 'gutter')*2;
+            .page-title {
+                color: $mc-blue;
+                .title {
+                    font-size: 1.65rem;
+                    font-weight: 700;
+                    letter-spacing: 0;
+                    margin-bottom: 0.75rem;;
+                }
+                .intro {
+                    font-size: 0.875rem;
+                    color: $mc-lblue;
+                }
+            }
+        }
+    }
+}    
+
+// Ceases
+.dashboard-content {
+    &.cases {
+        .page-grid {
+            @include grid(1fr 1fr 1fr, get($grid, 'gutter')*2);
+            @include vertical-grid(170px 600px, get($grid, 'gutter')*2);
+            margin: get($grid, 'gutter')*2;
+            // grid-auto-rows: 250px;
+            grid-template-areas:
+                "cases cases overview"
+                "cases cases form";
+            .cases-grid {
+                grid-area: cases;
+                overflow: hidden;
+                @include grid(1fr 1fr, 0);
+                @include vertical-grid(35px 40px 1fr 40px, 0);
+                grid-template-areas:
+                    "header header"
+                    "filter the-case"
+                    "list the-case"
+                    "pag the-case";
+                header {
+                    grid-area: header;
+                }    
+                .case-filter {
+                    grid-area: filter;
+                }
+                .table-rows {
+                    grid-area: list;
+                }
+                .pagination {
+                    grid-area: pag;
+                }
+                .the-case {
+                    grid-area: the-case;
+                    @include grid(1fr, 0);
+                    @include vertical-grid(1fr, 0);
+                    overflow-y: auto;
+                }
+            }    
+            .cases-overview {
+                grid-area: overview;
+            }
+            .cases-form {
+                grid-area: form;
+            }        
+        }
+    }
+}
+
+// Consumables
+.dashboard-content {
+    &.consumables {
+        .page-grid {
+            @include grid(1fr 500px, get($grid, 'gutter')*2);
+            @include vertical-grid(600px, get($grid, 'gutter')*2);
+            margin: get($grid, 'gutter')*2;
+            grid-template-areas:
+                "consumables clix";
+            .consumables {
+                grid-area: consumables;
+            }
+            .clix {
+                grid-area: clix;
+                @include grid(1fr, 0);
+                .preview {
+                    place-self: center;
+                    width: 220px;
+                }
+            }        
+        }            
+    }
+}

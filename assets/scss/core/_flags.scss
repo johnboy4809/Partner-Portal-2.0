@@ -1,0 +1,31 @@
+$offset: 16px;
+
+.flag {
+  display: inline-block;
+  background-repeat: no-repeat;
+  &.flag-16 {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('../graphics/flags-16x16.png');
+    background-repeat: no-repeat;
+    // border: 1px solid $mc-grey;
+    border-radius: 50%;
+    //Flag Positions
+    &.united-kingdom {
+      background-position: 0px 0px;
+    }
+    &.united-states {
+      background-position: -$offset 0px;
+    }
+    &.china {
+      background-position: -$offset*2 0px;
+    }
+    &.india {
+      background-position: -$offset*3 0px;
+    }
+    &.united-arab-emirates {
+      background-position: -$offset*4 0px;
+    }
+  }
+}

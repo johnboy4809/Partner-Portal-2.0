@@ -1,0 +1,74 @@
+@import "defaults";
+@import "vars";
+
+@import "core/mixins";
+@import "core/fonts";
+@import "core/misc";
+@import 'core/flags';
+@import 'node_modules/sass-griddle/sass/_griddle.scss'; // Or path to _griddle.scss if not using Eyeglass
+
+html {
+	font-size:$base-font-size;
+	width: 100%;
+	min-width: 320px;
+	overflow-x: hidden;
+}
+
+body {
+	margin:0;
+	padding:0;
+	background:$site-bg-colour;
+	color:$colour-text;
+	@include font-stack(sans-serif-stack);
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	@include smoothing;
+}
+
+* { -webkit-text-size-adjust:none; }
+
+input, textarea, select {
+	@include font-stack(sans-serif-stack);
+	margin:0;
+}
+
+select {
+	border:1px solid #D3D2D2;
+	background:#FFF;
+	color:#808285;
+}
+
+input:focus, textarea:focus { outline:none; }
+
+ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	li {
+		margin:0;
+		padding:0;
+	}
+}
+
+p {
+	line-height: $base-line-height +0.25;
+}
+
+img { 
+	max-width:100%; 
+	height:auto; 
+	display:block;
+}
+
+.center-v {
+	top: 50%;
+	@include translate (0, -50%);
+	position: absolute;
+}
+
+@import "dashboard";
+@import "dashboard-menu";
+@import "dashboard-header";
+@import "furniture";
+@import "modals";
+@import "table";

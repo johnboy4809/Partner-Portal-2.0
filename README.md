@@ -1,2 +1,2 @@
-# Partner-Portal-2.0
-new magicard partner portal
+# Magicard-Dealers-Theme
+Child theme of Magicard Base for dealers portal website

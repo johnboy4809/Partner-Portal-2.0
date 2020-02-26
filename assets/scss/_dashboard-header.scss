@@ -1,0 +1,173 @@
+.dashboard-header {
+    @include grid(1fr $site-header-height $site-header-height, 0px);
+    @include vertical-grid($site-header-height, 0px);
+    grid-template-areas:
+        "magicard user logout";
+    padding-left: $site-header-height;
+    .magicard {
+        grid-area: magicard;
+        place-self: center;
+    }
+    .user {
+        grid-area: user;
+        place-self: center;
+        cursor: pointer;
+        .fa-user-circle {
+            font-size: 2em;
+            color: $mc-lblue;
+        }
+    }
+    .logout {
+        grid-area: logout;
+        place-self: center;
+        cursor: pointer;
+        .fa-sign-out-alt {
+            font-size: 2em;
+        }
+    }
+    @include for-tablet-landscape-up {
+        padding-left: 0;
+        .magicard {
+            padding: 0 1em;
+            .brand {
+                @include grid(120px 1fr, get($grid, 'gutter'));
+                grid-template-areas:
+                    "logo name";
+                span {
+                    place-self: center start;
+                    text-transform: uppercase;
+                    letter-spacing: 0.15em;
+                }
+            }
+        }
+    }
+}
+
+// .dealer-brand {
+//     @include grid(1fr, 0px);
+//     grid-template-areas:
+//         "info";
+//     .dealer-info {
+//         place-self: center start;
+//         grid-area: info;
+//         padding: get($grid, 'gutter') get($grid, 'gutter')*2;
+//         img {
+//             max-height: $site-header-height - 10;
+//         }
+//         .dealer-name, .momentum-class {
+//             font-size: 1em;
+//             color: $sidebar;
+//             text-transform: uppercase;
+//             letter-spacing: 0.15em;
+//             margin: 0;
+//         }
+//         .momentum-class {
+//             font-size: 0.8em;
+//             letter-spacing: 0.05em;
+//         }
+//     }
+// }
+
+// .momentum-logo {
+//     background-image: url("../graphics/momentum-sprite.png");
+//     background-size: auto $site-header-height;
+//     background-repeat: no-repeat;
+//     background-position-x: -($site-header-height*2);// Approved as default
+//     &.premier {
+//         background-position: 0px 0px;
+//     }
+//     &.premium {
+//         background-position-x: -$site-header-height;
+//     }
+//     &.approved {
+//         background-position-x: -($site-header-height*2);
+//     }
+//     &.neo {
+//         background-position-x: -($site-header-height*3);
+//     }
+//     &.horizon {
+//         background-position-x: -($site-header-height*4);
+//     }
+//     &.kiosk {
+//         background-position-x: -($site-header-height*5);
+//     }
+// }
+
+.user {
+    .user-menu {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+        visibility: hidden;
+        width: 90%;
+        background-color: $white;
+        border-radius: $dash-radius;
+        border: 1px solid lighten($dash-line, 5%);
+        border-top: 3px solid $mc-lblue; 
+        @include transition(opacity .5s ease-in-out);
+        &.active {
+            left: auto;
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+            top: $site-header-height;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            width: 100%;
+        }
+        @include for-tablet-portrait-up {
+            @include material_box_shadow(2, darken($dash-line, 5%));
+            &.active {
+                left: auto;
+                right: $site-header-height;
+                width: $menuWidth;
+                top: $site-header-height - 4;
+            }
+        }
+        .user-info {
+            background-color: $dash;
+            padding: 1.25em 1em; 
+            @include grid(50px 1fr, get($grid, 'gutter'));
+            border-bottom: 1px solid lighten($dash-line, 5%);
+            .profile-img, .profile-icon  {
+                place-self: center;
+                width: 50px !important;
+                height: 50px;
+            }
+            .info {
+                place-self: center stretch;
+                span {
+                    display: block;
+                    &.name {
+                        color: $mc-blue;
+                        margin-bottom: 0.25em;
+                    }
+                    &.title {
+                        color: $mc-lblue;
+                        text-transform: uppercase;
+                        font-size: 0.8em;
+                        letter-spacing: 0.15em;
+                    }
+                }
+            }
+        }
+        .menu-item {
+            a {
+                background-color: $white;
+                color: $mc-blue;
+                &:hover, &:focus {
+                    background-color: $white;
+                    color: $mc-lblue;
+                }
+            }
+            &:last-of-type {
+                a {
+                    border-top: 1px solid lighten($dash-line, 5%);
+                    padding: 2em;
+                }
+            }
+        }
+    }        
+}
+

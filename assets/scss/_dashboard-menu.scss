@@ -1,0 +1,144 @@
+$hoverCol: lighten($mc-blue, 65%);
+
+.dashboard-menu {
+    @include vertical-grid($site-header-height $site-header-height*1.5 1fr $site-header-height, 0px);
+    .brand {
+        place-self: center;
+        color: $hoverCol;
+        text-transform: uppercase;
+        h3 {
+            letter-spacing: 0.15em;
+            margin: 0;
+        }
+    }
+    .user {
+        background-color: lighten($sidebar, 5%);
+        padding: 0 1em; 
+        @include grid(50px 1fr, get($grid, 'gutter'));
+        .profile-img, .profile-icon  {
+            place-self: center;
+            width: 50px !important;
+            height: 50px;
+        }
+        .info {
+            color: $hoverCol;
+            place-self: center stretch;
+            span {
+                display: block;
+                &.name {
+                    margin-bottom: 0.25em;
+                }
+                &.title {
+                    text-transform: uppercase;
+                    font-size: 0.8em;
+                    letter-spacing: 0.15em;
+                }
+            }
+        }
+    }
+    .main-nav {
+        padding: 1em 0;
+    }
+    @include for-tablet-portrait-up {
+    //     &.collapse {
+    //         .menu-heading {
+    //             display: none;
+    //         }
+    //         .menu-item, .collapse-btn {
+    //             a {
+    //                 span, .fa-chevron-left {
+    //                     display: none;
+    //                 }
+    //                 .fa-chevron-right {
+    //                     display: block;
+    //                 }
+    //             }
+    //         }
+    //         .svg-inline--fa {
+    //             width: 100%;
+    //             font-size: 1.25em;
+    //         }
+    //     }
+    }
+    @include for-tablet-landscape-up {}
+    @include for-desktop-up {}
+}
+
+.menu-heading {
+    color: $hoverCol;
+    margin: 0.5em 0;
+    padding: 0 1em;
+    text-transform: uppercase;
+    h3 {
+        margin: 0;
+        font-size: 0.8em;
+        letter-spacing: 0.25em;
+    }
+}
+
+.menu-item, .collapse-btn  {
+    a {
+        color: $white;
+        display: block;
+        padding: 0.9em 1em;
+        margin: 0;
+        @include transition(all .3s ease-in-out);
+        .svg-inline--fa {
+            margin-right: 0.75em;
+        }
+    }
+    &:hover, &:focus {
+        background-color: darken($sidebar, 3%);
+        > a {
+            background-color: darken($sidebar, 3%);
+            color: $hoverCol;
+        }
+    }
+    &.has-sub {
+        position: relative;
+        > a {
+            &:after {
+                display: none;
+            }
+            &:after {
+                font-family: "Font Awesome 5 Pro";
+                font-weight: 300;
+                content: "\f107";
+            }
+            [data-icon="f107"] {
+                position: absolute;
+                left: auto;
+                right: 0.5em;
+                top: 0.5em;
+                font-size: 1.5em;
+            }
+        }
+        .sub-nav {
+            @include transition(all .3s ease-in-out);
+            visibility: hidden;
+            height: 0;
+            .menu-item {
+                a {
+                    padding: 0.9em 3em;
+                    color: $white;
+                    &:hover {
+                        background-color: darken($sidebar, 5%);
+                        color: $hoverCol;
+                    }
+                }
+            }
+        }
+        &.active {
+            .sub-nav {
+                visibility: visible;
+                height: auto;
+            }
+            background-color: darken($sidebar, 3%);
+        }
+    }
+}
+
+
+
+
+

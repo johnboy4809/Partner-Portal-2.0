@@ -1,0 +1,91 @@
+// Project Specific Vars
+$baseline-x                     :	8px;
+$site-header-height             : 60px;
+$menuWidth                      : 290px;
+$collapse                       : 50px;
+$dash-radius                    : 5px;
+
+// Font Stacks
+$sans-serif-stack               :	"Roboto", sans-serif;
+$sans-serif-bold-stack          :	"Roboto", sans-serif;
+
+// Colour Palette
+$mc-blue                        : rgb(0,57,118);
+$mc-lblue                       : rgb(15,132,216);
+$mc-grey                        : rgb(100,100,100);
+$mc-lgrey                       : rgb(230,230,230);
+$mc-offWhite                    : rgb(249,249,249);
+$alert-green                    : rgb(136, 176, 75);
+$alert-yellow                   : rgb(239, 192, 80);
+$alert-red                      : rgb(222,7,28);
+
+// Dashboard
+$sidebar                        : darken($mc-blue, 11%);
+$dash                           : rgb(246,247,250);
+$dash-line                      : rgb(212,217,227);
+$blue1                          : rgb(53, 69, 81);
+$blue2                          : rgb(28, 76, 116);
+$blue3                          : rgb(52, 156, 228); 
+$blue4                          : rgb(108, 180, 228);
+$blue5                          : rgb(100, 140, 172);
+
+// Text colours
+$colour-text                    : $mc-grey;
+
+// Link colours
+$colour-anchor                  :	$mc-blue;
+$colour-anchor-hover            :	$mc-lblue;
+
+@function get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$grid: (
+  'gutter'                      : 14px,
+  '1col'                        : 1fr,
+  '2col'                        : 1fr 1fr,
+  '3col'                        : 1fr 1fr 1fr,
+  '4col'                        : 1fr 1fr 1fr 1fr,
+  '5col'                        : 1fr 1fr 1fr 1fr 1fr,
+  '6col'                        : 1fr 1fr 1fr 1fr 1fr 1fr,
+  '7col'                        : 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+  '8col'                        : 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+  '9col'                        : 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+  '10col'                       : 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+  '11col'                       : 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+  '12col'                       : 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+);
+
+$breakpoints: (
+  'iphone'                      : 599px,
+  'tablet-p'                    : 600px,
+  'tablet-p-max'                : 899px,
+  'tablet-l'                    : 900px,
+  'table-l-max'                 : 1199px,
+  'desktop'                     : 1200px,
+  'desktop-max'                 : 1799px,
+  'large'                       : 1800px,
+  'site-max-width'              : 1280px,
+);
+
+$section                        : (
+  'spacer'                      : get($grid, 'gutter'),
+  'padding'                     : 0px get($grid, 'gutter'),
+  'margin'                      : get($grid, 'gutter') 0px,
+);
+
+$input: (
+  'font-size'                   : 1.05rem,
+  'height'                      : 40px,
+  'margin-right'                : 10px,
+  'border-width'                : 1px,
+  'border-style'                : solid,
+  'border-color'                : $mc-lblue,
+  'color'                       : ('checked': $mc-blue, 'unchecked': $mc-lgrey),
+  'radius'                      : 4px,
+  'padding'                     : get($grid, 'gutter')/2,
+  'focus'                       : lighten($mc_grey, 55%),
+);

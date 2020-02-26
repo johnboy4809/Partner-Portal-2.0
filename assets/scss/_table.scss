@@ -1,0 +1,359 @@
+.table {
+    @include grid(1fr, 0);
+    @include vertical-grid(35px 40px 1fr 40px, 0);
+    grid-template-areas:
+        "header"
+        "headings"
+        "rows"
+        "footer";
+    overflow-y: auto;  
+    .header {
+        grid-area: header;
+    }
+    .table-headings {
+        grid-area: headings;
+        border-bottom: 1px solid $dash-line;
+    }
+    .table-rows {
+        grid-area: rows;
+        position: relative;
+        overflow-y: scroll;
+    }
+    &.list {
+        @include vertical-grid(35px 1fr 40px, 0);
+        grid-template-areas:
+        "header"
+        "rows"
+        "footer";
+    }
+    .table-footer {
+        grid-area: footer;
+        border-top: 1px solid $dash-line;
+        @include grid(1fr, 0);
+        .controls {
+            place-self: center;
+            color: $mc-blue;
+            font-size: 0.875rem;
+            @include grid(35px 1fr 35px, get($grid, 'gutter'));
+            grid-template-areas:
+                "left pages right";
+            .left {
+                grid-area: left;
+                place-self: center;
+            }
+            .page {
+                grid-area: pages;
+                place-self: center;
+            }
+            .right {
+                grid-area: right;
+                place-self: center;
+            }        
+        }
+    }
+}
+
+.table-headings {
+    padding: 0 1.5rem;
+    span {
+        font-size: 0.75rem;
+        line-height: 1.65;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+    }
+}
+
+.table-row {
+    border-bottom: 1px solid $dash-line;
+    padding: 1rem 1.5rem;
+    @include transition(all .3s ease-in-out);
+    &:last-of-type {
+        border-bottom: none;
+    }
+    &:hover {
+        background-color: $dash;
+    }
+    span {
+        font-size: 0.875rem;
+        line-height: 1.65;
+        display: block;
+    }
+    [role=cell] {
+        padding: 0 0.5rem;
+    }
+}
+
+.printer-headings, .printer-row {
+    @include grid(60% 20% 20%, 0);
+    grid-template-areas:
+        "class warranty upgrades";
+    .printer-class {
+        grid-area: class;
+        @include grid(30px 1fr 1fr 1fr, 0);
+        grid-template-areas:
+            "image serial class status";
+        .serial {
+            grid-area: serial;
+            position: relative;
+            place-self: center stretch;
+        }   
+        .image {
+            grid-area: image;
+            place-self: center;       
+        }
+        .class {
+            grid-area: class;
+            place-self: center start;
+            .class {
+                color: $mc-blue;
+                font-weight: 600;
+            }
+            .code {
+                color: $mc-lblue;
+                font-size: 0.75rem;;
+            }
+        }    
+        .desc {
+            grid-area: desc;
+            place-self: center start;
+        }
+        .status {
+            grid-area: status;
+            place-self: center;
+        } 
+        .table-filter-select, input { 
+            font-size: 0.75rem;
+            width: 100%;
+            border: none;
+            border-left: 1px solid $dash-line;
+            border-right: 1px solid $dash-line;
+            background: transparent;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+        }
+        .colum-search {
+            input {
+
+            }
+            .button {
+                position: absolute;
+                padding: 0;
+                border: none;
+                left: auto;
+                right: 10px;
+                top: 12px;
+            }
+        }
+    }
+    .printer-warranty {
+        grid-area: warranty;
+        @include grid(70% 30%, 0);
+        grid-template-areas:
+            "dates status";
+        .warranty {
+            grid-area: dates;
+            place-self: center start;
+            color: $mc-blue;
+        }   
+        .w-status {
+            grid-area: status;
+            place-self: center start;
+            font-weight: 600;
+        }    
+        .current {
+            color: $alert-green;
+        }
+        .ended {
+            color: $alert-red;
+        } 
+    }
+    .printer-upgrades {
+        grid-area: upgrades;
+        @include grid(1fr 1fr, 0);
+        grid-template-areas:
+            "keys reg view";
+        .keys {
+            grid-area: keys;
+            place-self: center;
+        }   
+        .reg {
+            grid-area: reg;
+            place-self: center;
+        }     
+        .view {
+            grid-area: view;
+            place-self: center;
+        }  
+    }
+}
+
+.case-headings, .case-row {
+    @include grid(30px 70% 1fr, get($grid, 'gutter'));
+    grid-template-areas:
+        "dot case date";
+    cursor: pointer;
+    .dot {
+        grid-area: dot;
+        place-self: center;
+        color: $alert-green;
+        &.closed {
+            color: $alert-red;
+        }
+    }
+    .case-info {
+        grid-area: case;
+        place-self: center start;
+        .title {
+            h3 {
+                color: $mc-blue;
+                font-weight: 600;
+            }
+            p {
+                margin-bottom: 0.15rem;
+            }
+        }
+        .info {
+            @include grid(1fr 1fr 1fr, 0);
+            @include vertical-grid(1fr 1fr, 0); 
+            grid-template-areas:
+                "update update"
+                "status replies";
+            font-size: 0.875rem;
+            color: $mc-blue;        
+            .status {
+                grid-area: status;
+                place-self: center start;
+                color: $alert-green;
+                &.closed {
+                    color: $alert-red;
+                }
+            }
+            .update {
+                grid-area: update;
+                place-self: center start;
+                color: $mc-lblue;
+            }
+            .replies {
+                grid-area: replies;
+                place-self: center start;
+            }
+        }
+    }
+    .created {
+        grid-area: date;
+        place-self: center;
+    }
+    &.active {
+        background-color: rgba($mc-lblue, 0.09);
+    }
+}
+
+.consumable-links {
+    @include grid(1fr, 0);
+    @include vertical-grid(35px 1fr, 0);
+    grid-template-areas:
+        "header"
+        "form";
+    // overflow-y: auto;  
+    form {
+        grid-area: form;
+        @include vertical-grid(60px 1fr 80px, 0);
+        overflow-y: hidden;
+        grid-template-areas:
+            "default"
+            "rows"
+            "footer";
+        .default-link {
+            grid-area: default;
+            border-bottom: 3px solid $dash-line;
+            padding: 0;
+            @include grid(50px 20% 1fr, 0);
+            .icon {
+                place-self: center;
+                font-size: 1.65rem;
+                color: $mc-lblue;
+            }
+            .label {
+                place-self: center end;
+                font-size: 0.875rem;
+                padding: 0 1.5rem;
+                color: $mc-blue;
+            }
+            input {
+                height: 100%;
+                border: none;
+                border-left: 1px solid $dash-line;
+            }
+        }
+        .table-rows {
+            grid-area: rows;
+            overflow-y: auto; 
+            .consumable-row {
+                border-top: none;
+                border-bottom: 1px solid $dash-line;
+                padding: 0;
+                @include grid(50px 20% 1fr 100px, 0);
+                @include vertical-grid(50px, 0);
+                .img {
+                    padding: 0.5rem;
+                }
+                select, input {
+                    height: 100%;
+                    border: none;
+                    border-left: 1px solid $dash-line;
+                }
+                .delete {
+                    place-self: center;
+                }
+            }
+        }
+        .consumables-footer {
+            border-top: 1px solid $dash-line;
+            @include grid(1fr, 0);
+            .buttons {
+                place-self: center;
+                @include grid(150px 150px, get($grid, 'gutter'));
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+
+
+// .case-filter {
+//     border-bottom: 1px solid $mc-lgrey;
+//     @include grid(60% 40%, 0);
+//     grid-template-areas:
+//         "status order";
+//     .status {
+//         grid-area: status;
+//         padding: get($grid, 'gutter')*2;
+//     }
+//     .order {
+//         grid-area: order;
+//         padding: get($grid, 'gutter')*2;
+//         border-left: 1px solid $mc-lgrey;
+//         place-self: center end  ;
+//     }
+//     #Order {
+//         .svg-inline--fa {
+//             margin-left: 0.5rem;
+//         }
+//         &::after {
+//             display: none;
+//         }
+//         &::after{
+//             font-family: "Font Awesome 5 Pro";
+//             font-weight: 300;
+//             border: none;
+//             content: "\f175";
+//         }
+//         &.ASC {
+//             &::after{
+//                 content: "\f176";
+//             }
+//         }
+//     }
+// }
