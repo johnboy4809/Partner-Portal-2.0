@@ -1,7 +1,7 @@
 var $mc = jQuery.noConflict(); // remove conficts with $ for any plugin js
 
 // ------ Pagination controllers ------
-function request_printers(pn, byclass) {
+function request_printers(pn, byclass, byserial) {
         
     var rowsHTML        = $mc('#printerRows'),
         pgControls      = $mc('#printerControls'),
@@ -11,7 +11,7 @@ function request_printers(pn, byclass) {
         action          = 'printer-rows';
 
     $mc('#printerRows .working').addClass('show');
-    paginationAjax(last, rpp, pn, action, byclass, rowsHTML);
+    paginationAjax(last, rpp, pn, action, byclass, byserial, rowsHTML);
     pgControls.html(paginationControls(last, pn));
 }
 
@@ -29,7 +29,7 @@ function request_cases(pn) {
     pgControls.html(paginationControls(last, pn));
 }
 
-function paginationAjax(last, rpp, pn, action, byClass, rowsHTML) {
+function paginationAjax(last, rpp, pn, action, byClass, bySerial, rowsHTML) {
 
     if (last < 1) {
         last = 1;
@@ -43,9 +43,10 @@ function paginationAjax(last, rpp, pn, action, byClass, rowsHTML) {
                     + '&rpp=' + rpp
                     + '&last=' + last
                     + '&pn=' + pn
-                    + '&byclass=' + byClass,
+                    + '&byclass=' + byClass
+                    + '&byserial=' + bySerial,
         success 	: function(data) {  
-            console.log(data.query);
+            console.log(data);
             
             rowsHTML.html(data.html);
         }

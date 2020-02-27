@@ -1,10 +1,11 @@
 var $mc = jQuery.noConflict(); // remove conficts with $ for any plugin js
 
-request_printers(1, 0);
+request_printers(1, 0, 0);
 $mc('#printerControls').on('click', 'a', function(e) {
     e.preventDefault();
     var byclass = $mc('#selectClass').val();
-    request_printers($mc(this).data('page'), byclass);
+    var byserial = $mc('#serialSearch').val();
+    request_printers($mc(this).data('page'), byclass, byserial);
 });
 
 request_cases(1);
@@ -14,11 +15,18 @@ $mc('#caseControls').on('click', 'a', function(e) {
 });
 
 $mc('#selectClass').on('change', function() {
-    console.log($mc(this).val());
     var byclass = $mc(this).val();
-    request_printers(1, byclass);
+    var byserial = $mc('#serialSearch').val();
+    request_printers(1, byclass, byserial);
 });
 
+$mc('#serialSearch').on("keyup input", function(){
+    var byserial = $mc(this).val();
+    var byclass = $mc('#selectClass').val();
+    if(byserial.length) {
+        request_printers(1, byclass, byserial);
+    }
+});
 
 $mc('#caseRows') .on('click', '.case-row', function(e) {
     var id = $mc(this).data('id');

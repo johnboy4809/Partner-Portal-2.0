@@ -22,12 +22,14 @@ class MC_Base_Dealers_Products
         $details    = array(
             'ID'        => $wp_session['account_sap_id'],
             'byClass'   => $clean->byclass,
+            'bySerial'  => $clean->byserial,
             'limit'     => $limit,
         );
 
-        $printers   = MagiConnect_SugarCRM::getSugar(json_encode($details),$url,true);
-        $result['query'] = $printers->sql;
-        $result['html'] = self::printerTableRows($printers->printers);
+        $printers           = MagiConnect_SugarCRM::getSugar(json_encode($details),$url,true);
+        $result['details']  = $details;
+        // $result['query']    = $printers->sql;
+        $result['html']     = self::printerTableRows($printers->printers);
         echo json_encode($result);
         die();
     }

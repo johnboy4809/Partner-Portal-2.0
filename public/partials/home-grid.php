@@ -3,8 +3,12 @@
 $html .= "<div class=\"main-grid\">";
 
 $html .= "<div class=\"card table printers-table\">";
-    $html .= "<header class=\"card-header\">";
+    $html .= "<header class=\"card-header filters\">";
         $html .= "<h4 class=\"h5\">{$user->account->name} printers <small><a href=\"".site_url('/printers')."\">View all printers</a></small></h4>";
+        $html .= "<div class=\"datesfilters\">";
+            $html .= "<input class=\"datepicker\" type=\"date\" id=\"bateFrom\" name=\"from\">";
+            // $html .= "<input class=\"datepicker\" type=\"date\" id=\"bateto\" name=\"to\">";
+        $html .= "</div>";
     $html .= "</header>";
     $html .= "<div class=\"table-headings printer-headings\" id=\"\">";
         $html .= "<div class=\"printer-class\">";

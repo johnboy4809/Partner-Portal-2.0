@@ -6,6 +6,10 @@
     @include material_box_shadow(1, darken($dash-line, 5%));
     header {
         color: $mc-blue;
+        &.filters {
+            @include grid(60% 40%, 0);
+            
+        }
     }
     &.table, &.contents {
         padding: 0;
