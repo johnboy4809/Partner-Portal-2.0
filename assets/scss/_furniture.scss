@@ -381,6 +381,11 @@
             }    
         }
     }
+    &.wide {
+        @include for-tablet-landscape-up {
+            max-width: 1000px;
+        } 
+    }
 }
 
 .company-profile {

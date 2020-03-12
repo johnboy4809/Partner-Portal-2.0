@@ -50,7 +50,7 @@ class Dealer_Shortcodes
         return $html;
     }
 
-public static function upgrades() 
+    public static function upgrades() 
     {
         //wp_enqueue_script('home-scripts', get_stylesheet_directory_uri().'/assets/js/consumables-page.min.js', array('mc-base-dealer-public'));
 

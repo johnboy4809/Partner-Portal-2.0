@@ -21,6 +21,15 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2"
-  }
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.26.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://johnboy4809@github.com/johnboy4809/Partner-Portal-2.0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johnboy4809/Partner-Portal-2.0/issues"
+  },
+  "homepage": "https://github.com/johnboy4809/Partner-Portal-2.0#readme"
 }
