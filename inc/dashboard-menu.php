@@ -3,17 +3,17 @@
         <i class="far fa-arrow-left"></i>
     </div>
     <div class="brand">
-        <h3 class="h5"><?php echo $user->account->name; ?></h3>
+        <h3 class="h5"><?php echo $contact->account->name; ?></h3>
     </div>
     <div class="user"><?php
-    if (isset($user->contact->avatar)) { ?>
-        <div class="profile-img large" style="background-image:url(<?php echo $user->contact->avatar; ?>)"></div><?php
+    if (isset($contact->contact->avatar)) { ?>
+        <div class="profile-img large" style="background-image:url(<?php echo $contact->contact->avatar; ?>)"></div><?php
     } else { ?>
         <div class="profile-icon large" style="background-image:url(<?php echo get_template_directory_uri().'/assets/graphics/avatar.svg'; ?>)"></div><?php
     } ?>
         <div class="info">
-            <span class="name"><?php echo $user->contact->name ?></span>
-            <span class="title"><?php echo $user->contact->title; ?></span>
+            <span class="name"><?php echo $contact->contact->name ?></span>
+            <span class="title"><?php echo $contact->contact->title; ?></span>
         </div>
     </div>
     <nav class="main-nav">
@@ -36,6 +36,21 @@
             <li class="menu-item">
                 <a href="<?php echo site_url('/consumables');?>"><i class="fad fa-print"></i> <span>Consumables</span></a>
             </li>   
+            <li class="menu-heading">
+                <h3 class="h5">Account</h3>
+            </li>
+            <li class="menu-item">
+                <a href="<?php echo site_url('/account');?>"><i class="fad fa-print"></i> <span>Manage Account</span></a>
+            </li>  
+            <li class="menu-item has-sub">
+                <a href="<?php echo site_url('/cases');?>"><i class="fad fa-user-headset"></i></i> <span>Manage Sub Dealers</span></a>
+                <ul class="sub-nav">
+                    <li class="menu-item">
+                        <a href="<?php echo site_url('/cases');?>"><span>View sub dealers</span></a>
+                        <a href="" class="modal-link" data-action="modal-create-case"><span>Add asub dealer</span></a>
+                    </li>           
+                </ul>
+            </li> 
             <!-- <li class="menu-item">
                 <a href="#"><i class="fad fa-tools"></i> <span>Register Repair</span></a>
             </li> 

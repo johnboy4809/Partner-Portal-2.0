@@ -9,14 +9,14 @@
         <i class="fad fa-user-circle"></i>
         <div class="user-menu">
             <div class="user-info"><?php
-            if (isset($user->contact->avatar)) { ?>
-                <div class="profile-img large" style="background-image:url(<?php echo $user->contact->avatar; ?>)"></div><?php
+            if (isset($contact->contact->avatar)) { ?>
+                <div class="profile-img large" style="background-image:url(<?php echo $contact->contact->avatar; ?>)"></div><?php
             } else { ?>
                 <div class="profile-icon large" style="background-image:url(<?php echo get_template_directory_uri().'/assets/graphics/avatar.svg'; ?>)"></div><?php
             } ?>
                 <div class="info">
-                    <span class="name"><?php echo $user->contact->name ?></span>
-                    <span class="title"><?php echo $user->contact->title; ?></span>
+                    <span class="name"><?php echo $contact->contact->name ?></span>
+                    <span class="title"><?php echo $contact->contact->title; ?></span>
                 </div>
             </div>
             <ul class="user-nav">

@@ -1,18 +1,17 @@
 <?php
-
-$wp_session  = WP_Session::get_instance();
-// $wp_session['contact_id'] = 'OHdRcXpzL08yUFNhREh6YVIzUTk1T3NlcFp6dktNSDQ5a3UwbmlncE1rMGF4dkdsVHppbytHZDJBa0VrYlQwWQ==';
-// $wp_session['account_id'] = 'L1JPVGl4a0laK1Erc0UxUTFrOE1lS05pa214MEtZWCtRZ0xmMW1hQnpZQT0=';
-// $wp_session['account_sap_id'] = 'b0JOcDBPSVE1emdFbWl4YU5FZzk5Zz09';
-
-    if (!MagiAccounts_Login::loggedIn()) {
+    if (!MagiAccounts_Contact::loggedIn()) {
         MagiConnect_Message::set('info', 'Login required');
         wp_redirect(site_url('/login', MagiConnect_Core::protocall()));
         exit;
     }
+    $wp_session  = WP_Session::get_instance();
+    $contact     = MC_Base_Dealers_Contacts::contactDetails($wp_session['contact_id']);
+    $wp_session['account_id']       = MagiConnect_Core::obfuscate('encrypt',$contact->account->id);
+    $wp_session['account_sap_id']   = MagiConnect_Core::obfuscate('encrypt',$contact->account->account_id_sap_c);
 
-    $wp_session     = WP_Session::get_instance();
-    $user           = MagiAccounts_User::contactDetails($wp_session['contact_id']);
+    echo "<pre>";
+    print_r($wp_session);
+    echo "</pre>";
 
     the_post();
     require_once("inc/header.php");
@@ -24,7 +23,7 @@ $wp_session  = WP_Session::get_instance();
     </div>
     <?php require_once("inc/dashboard-header.php"); ?>
     <?php require_once("inc/dashboard-menu.php"); ?>
-    <?php the_content(); ?>
+    <?php //the_content(); ?>
     <footer class="dashboard-footer">
     </footer>
 </div>

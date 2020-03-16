@@ -269,3 +269,22 @@
         }            
     }
 }
+
+// Account
+.dashboard-content {
+    &.account {
+        .page-grid {
+            @include grid(1fr 1fr, get($grid, 'gutter')*2);
+            @include vertical-grid(600px, get($grid, 'gutter')*2);
+            margin: get($grid, 'gutter')*2;
+            grid-template-areas:
+                "contact account";
+            .contact {
+                grid-area: contact;
+            }
+            .account {
+                grid-area: account;
+            }        
+        }            
+    }
+}

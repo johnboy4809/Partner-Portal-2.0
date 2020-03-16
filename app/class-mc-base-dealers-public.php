@@ -18,8 +18,6 @@ class MC_Base_Dealers_Public
 
     public function enqueue_scripts() {
         wp_enqueue_script('mc-base-dealer-public', get_stylesheet_directory_uri().'/assets/js/dealers.min.js', array('jquery'), $this->version, true);
-        wp_enqueue_script('charts', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', array('jquery'), '0.8.3', true);
-        wp_enqueue_script('charts-data', get_stylesheet_directory_uri().'/assets/js/charts.min.js', array('charts'), $this->version, true);
     }
 
     public function register_shortcodes() {

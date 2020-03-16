@@ -17,7 +17,7 @@ class MC_Base_Dealers_Modals
     {
         $result = array('success' => false);
 
-        MagiAccounts_Login::logout();
+        MagiAccounts_Contact::logout();
 
         $url = site_url('/login', MagiConnect_Core::protocall());
         $html = "<div class=\"modal\">";

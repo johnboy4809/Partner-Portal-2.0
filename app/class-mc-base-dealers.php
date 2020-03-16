@@ -20,6 +20,7 @@
         private function load_dependencies() 
         {
             require_once get_theme_file_path('/app/class-mc-base-dealers-public.php');
+            require_once get_theme_file_path('/app/class-mc-base-dealers-contacts.php');
             require_once get_theme_file_path('/app/class-mc-base-dealers-modal.php');
             require_once get_theme_file_path('/app/class-mc-base-dealers-products.php');
             require_once get_theme_file_path('/app/class-mc-base-dealers-cases.php');
@@ -42,6 +43,21 @@
             $this->loader->add_action('init', $public, 'register_shortcodes');
             $this->loader->add_filter('query_vars', $public, 'add_query_vars');
             $this->loader->add_action('init', $public, 'add_rewrite_rules' );
+            // Contact Ajax
+            $this->loader->add_action('wp_ajax_regEmailCheck', 'MC_Base_Dealers_Contacts', 'contactEmailCheck');
+            $this->loader->add_action('wp_ajax_nopriv_regEmailCheck', 'MC_Base_Dealers_Contacts', 'contactEmailCheck');
+            $this->loader->add_action('wp_ajax_partnerContactRegister', 'MC_Base_Dealers_Contacts', 'registerContact');
+            $this->loader->add_action('wp_ajax_nopriv_partnerContactRegister', 'MC_Base_Dealers_Contacts', 'registerContact');
+            $this->loader->add_action('wp_ajax_verifyEmail', 'MC_Base_Dealers_Contacts', 'verifyContact');
+            $this->loader->add_action('wp_ajax_nopriv_verifyEmail', 'MC_Base_Dealers_Contacts', 'verifyContact');
+            $this->loader->add_action('wp_ajax_reset-email', 'MC_Base_Dealers_Contacts', 'resetPWEmail');
+            $this->loader->add_action('wp_ajax_nopriv_reset-email', 'MC_Base_Dealers_Contacts', 'resetPWEmail');
+            $this->loader->add_action('wp_ajax_reset-pw', 'MC_Base_Dealers_Contacts', 'resetPW');
+            $this->loader->add_action('wp_ajax_nopriv_reset-pw', 'MC_Base_Dealers_Contacts', 'resetPW');
+            $this->loader->add_action('wp_ajax_login', 'MC_Base_Dealers_Contacts', 'login');
+            $this->loader->add_action('wp_ajax_nopriv_login', 'MC_Base_Dealers_Contacts', 'login');
+            $this->loader->add_action('wp_ajax_updateContact', 'MC_Base_Dealers_Contacts', 'updateContact');
+            $this->loader->add_action('wp_ajax_nopriv_updateContact', 'MC_Base_Dealers_Contacts', 'updateContact');
             // Form Ajax  
             $this->loader->add_action('wp_ajax_check-serial', 'MC_Base_Dealers_Products', 'checkSerial');
             $this->loader->add_action('wp_ajax_nopriv_check-serial', 'MC_Base_Dealers_Products', 'checkSerial');
